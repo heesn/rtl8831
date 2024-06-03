@@ -1,0 +1,5 @@
+config RTL8851BU
+	tristate "Realtek 8851B USB WiFi"
+	depends on USB
+	---help---
+	  Help message of RTL8851BU
