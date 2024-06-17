@@ -229,9 +229,9 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter,
 {
 	struct wiphy *wiphy = adapter_to_wiphy(adapter);
 	u8 ret = _SUCCESS;
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0))
+////#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0))
 	unsigned int link_id = 0;
-#endif
+////#endif
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0))
 	struct cfg80211_chan_def chdef;
