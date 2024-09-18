@@ -12,10 +12,13 @@ Example: https://www.aliexpress.us/item/3256807263559115.html
 
 To install: 
 $make
+
 $sudo make install
 
 
 You will have to reinstall for any kernel updates.
 $make clean
+
 $make
+
 $sudo make install
