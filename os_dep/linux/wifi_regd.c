@@ -149,7 +149,7 @@ static void rtw_regd_schedule_dfs_chan_update(struct wiphy *wiphy)
 		rtw_regd_set_du_chdef(wiphy);
 	}
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(6, 9, 0))
 	/* ToDo CONFIG_RTW_MLD */
 	cfg80211_ch_switch_notify(wiphy_data->du_wdev->netdev, &wiphy_data->du_chdef, 0, 0);
 #elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 2))

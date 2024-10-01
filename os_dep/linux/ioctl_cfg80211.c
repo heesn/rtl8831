@@ -245,9 +245,9 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter,
 
 	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0))
 	if (started) {
-		#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
+		#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(6, 9, 0))
 		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, link_id, 0, false, punct_bitmap);
-		#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0))
+		#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 78))
 		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, link_id, 0, false);
 		#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 11, 0))
 		/* --- cfg80211_ch_switch_started_notfiy() ---
@@ -268,7 +268,7 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter,
 	if (!rtw_cfg80211_allow_ch_switch_notify(adapter))
 		goto exit;
 
-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
+	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(6, 9, 0))
 	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, link_id, punct_bitmap);
 	#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 2))
 	/* ToDo CONFIG_RTW_MLD */
