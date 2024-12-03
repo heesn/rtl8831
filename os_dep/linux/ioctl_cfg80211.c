@@ -245,7 +245,9 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter,
 
 	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0))
 	if (started) {
-		#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
+		#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0))
+		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, link_id, 0, false);
+		#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
 		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, link_id, 0, false, punct_bitmap);
 		#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0))
 		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, link_id, 0, false);
@@ -268,7 +270,9 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter,
 	if (!rtw_cfg80211_allow_ch_switch_notify(adapter))
 		goto exit;
 
-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
+	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0))
+	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, link_id);
+	#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CONFIG_MLD_KERNEL_PATCH)
 	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, link_id, punct_bitmap);
 	#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 2))
 	/* ToDo CONFIG_RTW_MLD */
@@ -6656,7 +6660,10 @@ static void rtw_get_chbwoff_from_cfg80211_chan_def(
 #endif /* (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)) */
 
 static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 13, 0))
+	, struct net_device *dev
+	, struct cfg80211_chan_def *chandef
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0))
 	, struct cfg80211_chan_def *chandef
 #else
 	, struct ieee80211_channel *chan

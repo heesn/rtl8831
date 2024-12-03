@@ -35,7 +35,7 @@ ifeq ($(GCC_VER_49),1)
 EXTRA_CFLAGS += -Wno-date-time	# Fix compile error && warning on gcc 4.9 and later
 endif
 
-EXTRA_CFLAGS += -I$(src)/include
+EXTRA_CFLAGS += -I$(shell pwd)/include
 
 EXTRA_LDFLAGS += --strip-debug
 
@@ -223,7 +223,8 @@ CONFIG_LAYER2_ROAMING = y
 CONFIG_ROAMING_FLAG = 0x3
 
 ###################### Platform Related #######################
-CONFIG_PLATFORM_I386_PC = y
+CONFIG_PLATFORM_I386_PC = n
+CONFIG_PLATFORM_ARM64_PC = y
 CONFIG_PLATFORM_RTL8198D = n
 CONFIG_PLATFORM_ANDROID_X86 = n
 CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
