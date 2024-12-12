@@ -711,8 +711,4 @@ power down etc.) in last time, we can unmark this flag to avoid some unpredictab
 */
 #define RTW_WKARD_TRIGGER_FRAME_PARSER
 
-#if !defined(strlcpy)
-#define strlcpy(a, b, c) strscpy(a, b, c)
-#endif
-
 #endif /* __DRV_CONF_H__ */
