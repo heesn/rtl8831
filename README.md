@@ -60,11 +60,6 @@ After switching the mode, reload the driver with:
 ```bash
 sudo modprobe 8851bu
 ```
-or
-```bash
-sudo modprobe 8851bu
-```
-
 ### Verify Wi-Fi Device is Active
 Check if the Wi-Fi interface is recognized:
 ```bash
