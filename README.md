@@ -18,7 +18,12 @@ CONFIG_PLATFORM_ARM64_PC = y
 ```
 This will instruct the build process to target ARM64 architecture instead of the default x86 architecture.
 
-### To install: 
+### Dkms install: 
+```bash
+sudo dkms install .
+```
+
+### Manually install: 
 ```bash
 make
 ```
